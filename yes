@@ -1,0 +1,1505 @@
+--[[
+██████╗ ██████╗ ██╗   ██╗████████╗ █████╗ ██╗     ██╗████████╗██╗   ██╗
+██╔══██╗██╔══██╗██║   ██║╚══██╔══╝██╔══██╗██║     ██║╚══██╔══╝╚██╗ ██╔╝
+██████╔╝██████╔╝██║   ██║   ██║   ███████║██║     ██║   ██║    ╚████╔╝
+██╔══██╗██╔══██╗██║   ██║   ██║   ██╔══██║██║     ██║   ██║     ╚██╔╝
+██████╔╝██║  ██║╚██████╔╝   ██║   ██║  ██║███████╗██║   ██║      ██║
+╚═════╝ ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝   ╚═╝      ╚═╝
+
+██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗
+██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
+██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗
+██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝
+╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗
+ ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝
+
+https://discord.gg/brutalitycc
+https://raw.githubusercontent.com/VdotBabyy/Brutality.cc/main/table.lua
+
+--]]
+
+
+getgenv().Brutality = {
+	['Options'] = {
+		Key = 'keyhere',  -- [ replace [keyhere] with your key ]
+		Intro = true,
+		BestConnection = false, -- // Finds the best ping -- //
+		['UnlockFps'] = {
+			Enabled = true, -- [ basicaly fps unlocker ]
+			FpsCap = 999,
+		},
+		['OptimizeUWP'] = false, -- optimizes UWP ( by alot / unlocks hz, makes game smoother, more fps)
+	},
+	['Silent'] = {
+		Enabled = true,
+		Enable_KeyBind = true,
+		Keybind = "p",
+		Notification = true,
+		Prediction = 0.135,
+		Use_HitChance = true,
+		HitChance = 300,
+		HitParts = "HumanoidRootPart",
+		NearestCursorHitpart = false,
+		HitPart_Mode = 'Nearest Point' -- 'Nearest Part', 'Nearest Point', 'Default',
+	},
+	['AimAssist'] = {
+		Enabled = true,
+		KeyBind = "C",
+		HitPart = "HumanoidRootPart",
+		Range = math.huge,
+		Use_AirShotHitPart = false,
+		AirShotHitPart = "LowerTorso",
+		Prediction = 0.135,
+		Smooth = true,
+		SmoothValue = 0.014,
+		HitPart_Mode = "Nearest Point", -- HitParts or Nearest Point or Nearest Part --
+		['Shake'] = {
+			Enabled = true,
+			X = 5,
+			Y = 5,
+			Z = 5,
+		},
+		['EasingStyle'] = { --// Current Methods : ( Linear, Sine, Back, Quad, Quart, Quint, Bounce, Elastic, Exponential, Circular, Cubic )
+			First = "Linear",
+			Second = "InOut"
+		},
+	},
+	['Fov'] = {
+		['Silent'] = {
+			Visible = true,
+			Radius = 35,
+			Default = 20,
+			Color = "255, 255, 255"
+		},
+		['AimAssist'] = {
+			Visible = false,
+			UseFov = false,
+			Filled = false,
+			Size = 200,
+			Transparency = 0.30,
+			Thickness = 1,
+			Color = Color3.fromRGB(255, 255, 255),
+			Sides = 20
+		},
+	},
+	['ChecksV1'] = {      -- // For Silent -- //
+		Knocked = true,   -- // KO Check -- //
+		Wall = true,      -- // Wall Check -- //
+		Grabbed = true,   -- // Grabbed Check -- //
+		Crew_Check = false, -- // Crew Check -- //
+		NoGroundShots = true, -- // No Ground Shots -- //
+	},
+	['ChecksV2'] = {      -- // For AimAssist -- //
+		Knocked = true,   -- // KO Check -- //
+		Wall = true,      -- // Wall Check -- //
+	},
+	['Resolver'] = {      -- // Resolves Antilocks -- //
+		Enabled = true,   -- // Keep this enable -- //
+		Min = 80,         -- // keep this as default -- //
+		Max = -40,        -- // keep this as default -- //
+		Anti_Aim_Viewer = true, -- // Bypasses Aim Viewer -- //
+	},
+	['Settings'] = {
+		AutoLowGFX = false,
+		MuteBoomBox = false,
+		AutoReload = false,
+	},
+	['TriggerBot'] = {
+		Enabled = false,
+		Notification = true,
+		Use_KeyBind = true,
+		EnableDelay = true,
+		KeyBind = "T",
+		Delay = 0.001,
+	},
+	['Noclip_Macro'] = {
+		Enabled = false,
+		KeyBind = Enum.KeyCode.H,
+		Gun = '[Shotgun]',
+		Interval = 0.001,
+	},
+	['Animation'] = { -- once u click the keybinds it makes u use the Animation
+		Lay = false, LayKey = Enum.KeyCode.T,
+		Greet = false, GreetKey = Enum.KeyCode.G,
+		Speed = false, SpeedKey = Enum.KeyCode.N,
+		Sturdy = false, SturdyKey = Enum.KeyCode.H,
+		Griddy = false, GriddyKey = Enum.KeyCode.G,
+	},
+	['GunSorting'] = {
+		Enabled = true,
+		Keybind = "X",
+		Slots = { "[Double-Barrel SG]", "[TacticalShotgun]", "[Revolver]", "[Chicken]", "[Pizza]" },
+	},
+	['Macro'] = {
+		Enabled = true,
+		KeyBind = "X",
+		BypassMacroAbuse = false,
+		Speed = 1,
+	},
+	['Memory'] = {
+		Enabled = true,
+		Start = 971,
+		End = 984,
+	},
+	['GunFov'] = {
+		Enabled = false,
+		DoubleBarrel = 25,
+		Revolver = 25,
+		Rifle = 25,
+		Shotgun = 25,
+		Smg = 25,
+		TacticalShotgun = 25,
+		Silencer = 25,
+		AK47 = 25,
+		AR = 25,
+		P90 = 25,
+		AUG = 25,
+		SilencerAR = 25,
+	},
+	['Range'] = {
+		Enabled = true,
+		Type = "Fov",
+		Close = 15,
+		Mid = 30,
+		Far = 120,
+		VeryFar = math.huge,
+		CloseFov = 15,
+		ClosePrediction = 0.135,
+		MidFov = 7,
+		MidPrediction = 0.135,
+		FarFov = 4,
+		FarPrediction = 0.135,
+		VeryFarFov = 2,
+		VeryFarPrediction = 0.135,
+	},
+	['AutoPrediction'] = {
+		Enabled = false,
+		P30 = 0.1000,
+		P40 = 0.1100,
+		P50 = 0.1190,
+		P60 = 0.1230,
+		P70 = 0.1250,
+		P80 = 0.1290,
+		P90 = 0.1295,
+		P100 = 0.1300,
+		P110 = 0.1315,
+		P120 = 0.1344,
+		P130 = 0.1411,
+		P140 = 0.1500,
+		P150 = 0.1555,
+		P160 = 0.1574,
+		P170 = 0.1663,
+		P180 = 0.1672,
+		P190 = 0.1848,
+		P200 = 0.1865
+	},
+	['Chat'] = {
+		Enabled = false,
+		HitChance = '$hc',
+		Silent_Prediction = '$pred',
+		Fov_Size = '$fov',
+		Show_Fov_Silent = '$SFS',
+	},
+	Esp = {
+		Enabled = true,
+		Bounding_Box = true,
+		Fill_Box = false,
+		Fill_Transparency = 0.75,
+		Distance = false,
+		Names = true,
+		Health = true,
+		Health_Type = "Bar"
+	},
+}
+
+script_key = getgenv().Brutality['Options'].Key;
+
+local StarterGui = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Client = LocalPlayer
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local GetPlayers = Players.GetPlayers
+local Mouse = LocalPlayer:GetMouse()
+local RunService = game:GetService("RunService")
+local Camera = game.Workspace.CurrentCamera
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local TPservice = game:GetService("TeleportService")
+local GetPlayers = Players.GetPlayers
+local Mouse = LocalPlayer:GetMouse()
+local Workspace = game:GetService("Workspace")
+local GuiService = game:GetService("GuiService")
+local CurrentCamera = Workspace.CurrentCamera
+local TeleportService = game:GetService("TeleportService")
+local GetGuiInset = GuiService.GetGuiInset
+local Circle1 = Drawing.new("Circle")
+local Plr, Plr2, IsTargetting
+game:FindService'ReplicatedStorage'.MainEvent:FireServer'OneMoreTime'
+
+
+function WallCheck(destination, ignore)
+	if (getgenv().Brutality['ChecksV2'].Wall) then
+		local Origin = Camera.CFrame.p
+		local CheckRay = Ray.new(Origin, destination - Origin)
+		local Hit = game:GetService("Workspace"):FindPartOnRayWithIgnoreList(CheckRay, ignore)
+		return Hit == nil
+	else
+		return true
+	end
+end
+
+local WTS = (function(Object)
+	local ObjectVector = CurrentCamera:WorldToScreenPoint(Object.Position)
+	return Vector2.new(ObjectVector.X, ObjectVector.Y)
+end)
+
+local Filter = (function(obj)
+	if (obj:IsA('BasePart')) then
+		return true
+	end
+end)
+
+local MousePosVector2 = (function()
+	return Vector2.new(Mouse.X, Mouse.Y)
+end)
+
+RunService.Heartbeat:Connect(function()
+	if getgenv().Brutality['AimAssist'].Enabled == true and Plr and Plr.Character ~= nil then
+		if getgenv().Brutality['ChecksV2'].Knocked then
+			if Plr.Character.BodyEffects["K.O"].Value then
+				Plr = nil
+			end
+		end
+	end
+end)
+
+if getgenv().Brutality['Options'].Intro == true then
+	local intro = true
+
+	if intro then
+		local Image = Drawing.new("Image")
+		local Screen = workspace.CurrentCamera.ViewportSize
+
+		Image.Data = game:HttpGet("https://ibb.co/KKq22vK")
+		Image.Visible = true
+		Image.Transparency = 1
+		Image.Position = Vector2.new(100, 100)
+		Image.Size = Vector2.new(Screen.X, Screen.Y)
+
+		local Sound = Instance.new("Sound")
+
+		Sound.SoundId = "http://www.roblox.com/asset/?id=15167576874"
+		Sound.Volume = 5
+		Sound.Parent = game.Workspace
+
+		Sound:play()
+
+		task.wait(1)
+
+		for i = 1, 100 do
+			Image.Transparency = 1 - (i / 40)
+			task.wait(0.01)
+		end
+
+		Image:Remove()
+	end
+end
+
+local BrutalityTarget
+local BrutalityTargetrey2
+local On
+
+local Vec2 = function(property)
+	return Vector2.new(property.X, property.Y + (game:GetService("GuiService"):GetGuiInset().Y))
+end
+
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
+local Players, Client, Mouse, RS, Camera =
+	game:GetService("Players"),
+	game:GetService("Players").LocalPlayer,
+	game:GetService("Players").LocalPlayer:GetMouse(),
+	game:GetService("RunService"),
+	game.Workspace.CurrentCamera
+
+-----------------------------------------
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local GuiService = game:GetService("GuiService")
+local RunService = game:GetService("RunService")
+local Heartbeat = RunService.Heartbeat
+local LocalPlayer = Players.LocalPlayer
+local CurrentCamera = Workspace.CurrentCamera
+local Mouse = LocalPlayer:GetMouse()
+local Drawingnew = Drawing.new
+local Color3fromRGB = Color3.fromRGB
+local Vector2new = Vector2.new
+local GetGuiInset = GuiService.GetGuiInset
+local Randomnew = Random.new
+local mathfloor = math.floor
+local CharacterAdded = LocalPlayer.CharacterAdded
+local CharacterAddedWait = CharacterAdded.Wait
+local WorldToViewportPoint = CurrentCamera.WorldToViewportPoint
+local RaycastParamsnew = RaycastParams.new
+local EnumRaycastFilterTypeBlacklist = Enum.RaycastFilterType.Blacklist
+local Raycast = Workspace.Raycast
+local GetPlayers = Players.GetPlayers
+local Instancenew = Instance.new
+local IsDescendantOf = Instancenew("Part").IsDescendantOf
+local FindFirstChildWhichIsA = Instancenew("Part").FindFirstChildWhichIsA
+local FindFirstChild = Instancenew("Part").FindFirstChild
+local tableremove = table.remove
+local tableinsert = table.insert
+-----------------------------------------
+
+local Circle = Drawing.new("Circle")
+Circle.Color = Color3.new(0, 255, 255)
+Circle.Thickness = 1
+
+
+
+game.Lighting.GlobalShadows = not Brutality.Main.DisableShadows
+if Brutality.Main.MuteBoomBox == true then
+	for i, v in pairs(game.Players:GetChildren()) do
+		if v.Name ~= game.Players.LocalPlayer.Name then
+			if game.Players:FindFirstChild(v.Name) then
+				repeat wait() until v.Character
+				for i, x in pairs(v.Character:GetDescendants()) do
+					if x:IsA("Sound") and x.Playing == true then
+						x.Playing = false
+					end
+				end
+			end
+		end
+	end
+end
+local UpdateFOV = function()
+	if (not Circle) then
+		return Circle
+	end
+	Circle.Visible = Brutality['Fov']['Silent'].Visible
+	Circle.Radius = Brutality['Fov']['Silent'].Size * 3
+	Circle.Position = Vector2.new(Mouse.X, Mouse.Y + (game:GetService("GuiService"):GetGuiInset().Y))
+	Circle.Color = Circle.Color
+	return Circle
+end
+RS.Heartbeat:Connect(UpdateFOV)
+
+if Brutality['Fov']['Silent'].Color == "red" then
+	Circle.Color = Color3.new(255, 0, 0)
+elseif Brutality['Fov']['Silent'].Color == "blue" then
+	Circle.Color = Color3.new(0, 0, 255)
+elseif Brutality['Fov']['Silent'].Color == "green" then
+	Circle.Color = Color3.new(0, 255, 0)
+elseif Brutality['Fov']['Silent'].Color == "yellow" then
+	Circle.Color = Color3.new(255, 255, 0)
+elseif Brutality['Fov']['Silent'].Color == "purple" then
+	Circle.Color = Color3.new(128, 0, 128)
+elseif Brutality['Fov']['Silent'].Color == "orange" then
+	Circle.Color = Color3.new(255, 165, 0)
+elseif Brutality['Fov']['Silent'].Color == "pink" then
+	Circle.Color = Color3.new(255, 192, 203)
+elseif Brutality['Fov']['Silent'].Color == "brown" then
+	Circle.Color = Color3.new(165, 42, 42)
+elseif Brutality['Fov']['Silent'].Color == "black" then
+	Circle.Color = Color3.new(0, 0, 0)
+elseif Brutality['Fov']['Silent'].Color == "white" then
+	Circle.Color = Color3.new(255, 255, 255)
+elseif Brutality['Fov']['Silent'].Color == "gray" then
+	Circle.Color = Color3.new(128, 128, 128)
+elseif Brutality['Fov']['Silent'].Color == "light blue" then
+	Circle.Color = Color3.new(173, 216, 230)
+elseif Brutality['Fov']['Silent'].Color == "maroon" then
+	Circle.Color = Color3.new(128, 0, 0)
+elseif Brutality['Fov']['Silent'].Color == "teal" then
+	Circle.Color = Color3.new(0, 128, 128)
+elseif Brutality['Fov']['Silent'].Color == "lime" then
+	Circle.Color = Color3.new(0, 255, 0)
+elseif Brutality['Fov']['Silent'].Color == "magenta" then
+	Circle.Color = Color3.new(255, 0, 255)
+elseif Brutality['Fov']['Silent'].Color == "turquoise" then
+	Circle.Color = Color3.new(64, 224, 208)
+end
+
+local SpeedGlitch = false
+Mouse.KeyDown:Connect(function(Key)
+	if Key == (string.lower(Brutality['Macro'].KeyBind)) and Brutality['Macro'].BypassMacroAbuse == false then
+		if Brutality['Macro'].Enabled then
+			SpeedGlitch = not SpeedGlitch
+			if SpeedGlitch == true then
+				repeat
+					task.wait(Brutality['Macro'].Speed / 100)
+					game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+					task.wait(Brutality['Macro'].Speed / 100)
+					game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+					task.wait(Brutality['Macro'].Speed / 100)
+					game:GetService("VirtualInputManager"):SendKeyEvent(true, "I", false, game)
+					task.wait(Brutality['Macro'].Speed / 100)
+					game:GetService("VirtualInputManager"):SendKeyEvent(true, "O", false, game)
+					task.wait(Brutality['Macro'].Speed / 100)
+				until SpeedGlitch == false
+			end
+		end
+	end
+end)
+
+Mouse.KeyDown:Connect(function(Key)
+	if Key == (string.lower(Brutality['Macro'].KeyBind)) and Brutality['Macro'].BypassMacroAbuse == true then
+		if Brutality['Macro'].Enabled then
+			SpeedGlitch = not SpeedGlitch
+			if SpeedGlitch == true then
+				repeat
+					task.wait(Brutality['Macro'].Speed / 100)
+					game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+					task.wait(Brutality['Macro'].Speed / 100)
+					game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+					task.wait(Brutality['Macro'].Speed / 100)
+					game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", true, game)
+					task.wait(Brutality['Macro'].Speed / 100)
+					game:GetService("VirtualInputManager"):SendMouseWheelEvent("0", "0", false, game)
+					task.wait(Brutality['Macro'].Speed / 100)
+				until SpeedGlitch == false
+			end
+		end
+	end
+end)
+
+
+if Brutality['GunSorting'].Enabled == true then
+	local services = {
+		["Players"] = game:GetService("Players"),
+		["RunService"] = game:GetService("RunService"),
+	}
+
+	local variables = {
+		["LocalPlayer"] = services["Players"].LocalPlayer,
+		["RenderStepped"] = services["RunService"].RenderStepped,
+	}
+
+	local function get_instance(from, name)
+		if from ~= nil and name ~= nil then
+			local inst = from:FindFirstChildOfClass(name)
+			if not inst then
+				inst = from:FindFirstChild(name)
+			end
+			if inst then
+				return inst
+			end
+		end
+	end
+	local function update()
+		variables["RenderStepped"]:wait()
+		local temp = {}
+		for i = 1, #variables["LocalPlayer"].Backpack:GetChildren() do
+			local tool = get_instance(variables["LocalPlayer"].Backpack, "Tool")
+			if tool then
+				table.insert(temp, tool)
+				tool.Parent = game
+			end
+		end
+		for x = 1, #Brutality['GunSorting'].List do
+			for i = 1, #temp do
+				if string.sub(string.lower(tostring(temp[i])), 1, string.len(string.lower(Brutality['GunSorting'].List[x]))) == string.lower(Brutality['GunSorting'].List[x]) then
+					temp[i].Parent = variables["LocalPlayer"].Backpack
+					wait(0.105)
+				end
+			end
+		end
+		for i = 1, #temp do
+			temp[i].Parent = variables["LocalPlayer"].Backpack
+			wait(0)
+		end
+	end
+	Mouse.KeyDown:Connect(function(key)
+		if key == Brutality['GunSorting'].Keybind and Brutality['GunSorting'].Enabled then
+			update()
+		end
+	end)
+end
+
+
+
+if Brutality['Settings'].AutoLowGFX then
+	for _, v in pairs(workspace:GetDescendants()) do
+		if v.ClassName == "Part"
+			or v.ClassName == "SpawnLocation"
+			or v.ClassName == "WedgePart"
+			or v.ClassName == "Terrain"
+			or v.ClassName == "MeshPart" then
+			v.Material = "Plastic"
+		end
+	end
+end
+
+function IsPartVisible(Part, PartDescendant)
+	-- // Vars
+	local Character = LocalPlayer.Character or CharacterAddedWait(CharacterAdded)
+	local Origin = CurrentCamera.CFrame.Position
+	local _, OnScreen = WorldToViewportPoint(CurrentCamera, Part.Position)
+
+	-- //
+	if (OnScreen) then
+		-- // Vars
+		local raycastParams = RaycastParamsnew()
+		raycastParams.FilterType = EnumRaycastFilterTypeBlacklist
+		raycastParams.FilterDescendantsInstances = { Character, CurrentCamera }
+
+		-- // Cast ray
+		local Result = Raycast(Workspace, Origin, Part.Position - Origin, raycastParams)
+
+		-- // Make sure we get a result
+		if (Result) then
+			-- // Vars
+			local PartHit = Result.Instance
+			local Visible = (not PartHit or IsDescendantOf(PartHit, PartDescendant))
+
+			-- // Return
+			return Visible
+		end
+	end
+
+	-- // Return
+	return false
+end
+
+ClosestPlrFromMouse = function()
+	local Target, Closest = nil, 1 / 0
+
+	for _, v in pairs(Players:GetPlayers()) do
+		if (v.Character and v ~= Client and v.Character:FindFirstChild("HumanoidRootPart")) then
+			local Position, OnScreen = Camera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+			local Distance = (Vector2.new(Position.X, Position.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+
+			if (Circle.Radius > Distance and Distance < Closest and OnScreen) then
+				Closest = Distance
+				Target = v
+			end
+		end
+	end
+
+	if Brutality['ChecksV1'].Knocked and Target then
+		local TargetHealth = Target.Character:FindFirstChild("Humanoid") and Target.Character.Humanoid.Health or 0
+		if TargetHealth < 2 then
+			return nil
+		end
+	end
+
+	if Brutality['ChecksV1'].Wall then
+		if Target and not IsPartVisible(Target.Character.HumanoidRootPart, Target.Character) then
+			Target = nil
+			return nil
+		end
+	end
+
+	return Target
+end
+
+
+local WTS = function(Object)
+	local ObjectVector = Camera:WorldToScreenPoint(Object.Position)
+	return Vector2.new(ObjectVector.X, ObjectVector.Y)
+end
+
+local IsOnScreen = function(Object)
+	local IsOnScreen = Camera:WorldToScreenPoint(Object.Position)
+	return IsOnScreen
+end
+
+local FilterObjs = function(Object)
+	if string.find(Object.Name, "Gun") then
+		return
+	end
+	if table.find({ "Part", "MeshPart", "BasePart" }, Object.ClassName) then
+		return true
+	end
+end
+
+local GetClosestBodyPart = function(character)
+	local ClosestDistance = 1 / 0
+	local BodyPart = nil
+	if (character and character:GetChildren()) then
+		for _, x in next, character:GetChildren() do
+			if FilterObjs(x) and IsOnScreen(x) then
+				local Distance = (WTS(x) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+				if (Circle.Radius > Distance and Distance < ClosestDistance) then
+					ClosestDistance = Distance
+					BodyPart = x
+				end
+			end
+		end
+	end
+	return BodyPart
+end
+if Brutality['Silent'].Enable_KeyBind then
+	Mouse.KeyDown:Connect(function(key)
+		if key == Brutality['Silent'].Keybind and Brutality['Silent'].Enabled then
+			getgenv().Brutality['Silent'].Enabled = false
+		elseif key == Brutality['Silent'].Keybind and not Brutality['Silent'].Enabled then
+			getgenv().Brutality['Silent'].Enabled = true
+		end
+	end)
+end
+
+
+
+local Prey
+
+task.spawn(function()
+	while task.wait() do
+		if Prey then
+			if Brutality['Silent'].Enabled and Brutality['Silent'].NearestCursorHitpart == true then
+				Brutality['Silent'].HitParts = tostring(GetClosestBodyPart(Prey.Character))
+			end
+		end
+	end
+end)
+
+local grmt = getrawmetatable(game)
+local backupindex = grmt.__index
+setreadonly(grmt, false)
+
+grmt.__index = newcclosure(function(self, v)
+	if (Brutality['Silent'].Enabled and Mouse and tostring(v) == "Hit") then
+		Prey = ClosestPlrFromMouse()
+
+		if Prey then
+			local endpoint = game.Players[tostring(Prey)].Character[Brutality['Silent'].HitParts].CFrame + (
+				game.Players[tostring(Prey)].Character[Brutality['Silent'].HitParts].Velocity * Brutality['Silent'].Prediction
+			)
+			return (tostring(v) == "Hit" and endpoint)
+		end
+	end
+	return backupindex(self, v)
+end)
+
+function AimAssistFOV()
+	if not (Circle1) then
+		return
+	end
+	Circle1.Visible = getgenv().Brutality['Fov']['AimAssist'].Visible
+	Circle1.Radius = getgenv().Brutality['Fov']['AimAssist'].Size * 2.1
+	Circle1.Position = Vector2.new(Mouse.X, Mouse.Y + GetGuiInset(GuiService).Y)
+	Circle1.Filled = getgenv().Brutality['Fov']['AimAssist'].Filled
+	Circle1.Transparency = getgenv().Brutality['Fov']['AimAssist'].Transparency
+	Circle1.Thickness = getgenv().Brutality['Fov']['AimAssist'].Thickness
+	Circle1.NumSides = getgenv().Brutality['Fov']['AimAssist'].Sides
+	Circle1.Color = getgenv().Brutality['Fov']['AimAssist'].Color
+	return Circle1
+end
+
+RunService.Heartbeat:Connect(function()
+	AimAssistFOV()
+end)
+
+if getgenv().Brutality['Fov']['AimAssist'].UseFov == true then
+	function NearestPerson()
+		local closestPlayer
+		local shortestDistance = getgenv().Brutality['Fov']['AimAssist'].Size
+		for i, v in ipairs(game.Players:GetPlayers()) do
+			pcall(function()
+				if v ~= game.Players.LocalPlayer and v.Character and
+					v.Character:FindFirstChild("Humanoid") and WallCheck(v.Character.HumanoidRootPart.Position, { Client,
+						v.Character }) then
+					local pos = CurrentCamera:WorldToViewportPoint(v.Character.PrimaryPart.Position)
+					local magnitude =
+						(Vector2.new(pos.X, pos.Y) - Vector2.new(Mouse.X, Mouse.Y)).magnitude
+					if (Vector2.new(pos.X, pos.Y) - Vector2.new(Mouse.X, Mouse.Y)).magnitude < shortestDistance then
+						closestPlayer = v
+						shortestDistance = magnitude
+					end
+				end
+			end)
+		end
+		return closestPlayer
+	end
+elseif getgenv().Brutality['Fov']['AimAssist'].UseFov == false then
+	function NearestPerson()
+		local closestPlayer
+		local shortestDistance = getgenv().Brutality['AimAssist'].Range
+		for i, v in ipairs(game.Players:GetPlayers()) do
+			pcall(function()
+				if v ~= game.Players.LocalPlayer and v.Character and
+					v.Character:FindFirstChild("Humanoid") and WallCheck(v.Character.HumanoidRootPart.Position, { Client,
+						v.Character }) then
+					local pos = CurrentCamera:WorldToViewportPoint(v.Character.PrimaryPart.Position)
+					local magnitude =
+						(Vector2.new(pos.X, pos.Y) - Vector2.new(Mouse.X, Mouse.Y)).magnitude
+					if (Vector2.new(pos.X, pos.Y) - Vector2.new(Mouse.X, Mouse.Y)).magnitude < shortestDistance then
+						closestPlayer = v
+						shortestDistance = magnitude
+					end
+				end
+			end)
+		end
+		return closestPlayer
+	end
+end
+
+local ClosestPlrFromMouse = function()
+	local Target = nil
+	Closest = 1 / 0
+	for _, v in ipairs(Players:GetPlayers()) do
+		if (v.Character and v ~= Client and v.Character:FindFirstChild("HumanoidRootPart")) and WallCheck(v.Character.HumanoidRootPart.Position, {
+				Client, v.Character }) then
+			local Position, OnScreen = Camera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+			local Distance = (Vector2.new(Position.X, Position.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+			if (Circle2.Radius > Distance and Distance < Closest and OnScreen and Position) then
+				Closest = Distance
+				Target = v
+			end
+		end
+	end
+	return Target
+end
+
+local GetClosestBodyPart = (function()
+	local ShortestDistance = math.huge
+	local BodyPart = nil
+	for _, v in next, game.Players:GetPlayers() do
+		if (v ~= Client and v.Character and v.Character:FindFirstChild("Humanoid")) then
+			for k, x in next, v.Character:GetChildren() do
+				if (Filter(x)) then
+					local Distance = (WTS(x) - MousePosVector2()).magnitude
+					if (Distance < ShortestDistance) then
+						ShortestDistance = Distance
+						BodyPart = x
+					end
+				end
+			end
+		end
+	end
+	return BodyPart
+end)
+
+task.spawn(function()
+	while task.wait() do
+		if Plr then
+			if getgenv().Brutality['AimAssist'].Enabled == true and getgenv().Brutality['AimAssist'].HitPart_Mode == "Nearest Part" then
+				getgenv().Brutality['AimAssist'].HitPart = tostring(GetClosestBodyPart(Plr.Character))
+			elseif getgenv().Brutality['AimAssist'].Enabled == true and getgenv().Brutality['AimAssist'].HitPart_Mode == "HitParts" then
+				getgenv().Brutality['AimAssist'].HitPart = getgenv().Brutality['AimAssist'].HitPart
+			elseif getgenv().Brutality['AimAssist'].Enabled == true and getgenv().Brutality['AimAssist'].HitPart_Mode == "Nearest Point" then
+				getgenv().Brutality['AimAssist'].HitPart = tostring(ClosestPoint(Plr.Character))
+			end
+		end
+	end
+end)
+
+if getgenv().Brutality['AimAssist'].Use_AirShotHitPart == true then
+	if Plr.Character.Humanoid.Jump == true and Plr.Character.Humanoid.FloorMaterial == Enum.Material.Air then
+		getgenv().Brutality['AimAssist'].HitPart = getgenv().Brutality['AimAssist'].AirShotHitPart
+	else
+		Plr.Character:WaitForChild("Humanoid").StateChanged:Connect(function(old, new)
+			if new == Enum.HumanoidStateType.Freefall then
+				getgenv().Brutality['AimAssist'].HitPart = getgenv().Brutality['AimAssist'].AirShotHitPart
+			else
+				getgenv().Brutality['AimAssist'].HitPart = getgenv().Brutality['AimAssist'].HitPart
+			end
+		end)
+	end
+end
+
+Mouse.KeyDown:Connect(function(Key)
+	local Keybind = getgenv().Brutality['AimAssist'].KeyBind:lower()
+	if (Key == Keybind) then
+		if getgenv().Brutality['AimAssist'].Enabled == true then
+			IsTargetting = not IsTargetting
+			if IsTargetting then
+				Plr = NearestPerson()
+			else
+				if Plr ~= nil then
+					Plr = nil
+				end
+			end
+		end
+	end
+end)
+
+RunService.RenderStepped:Connect(function()
+	if getgenv().Brutality['AimAssist'].Enabled == true and Plr and Plr.Character ~= nil then
+		if getgenv().Brutality['AimAssist']['Shake'] then
+			local Main = CFrame.new(Camera.CFrame.p,
+				Plr.Character[getgenv().Brutality['AimAssist'].HitPart].Position +
+				Plr.Character[getgenv().Brutality['AimAssist'].HitPart].Velocity *
+				getgenv().Brutality['AimAssist'].Prediction +
+				Vector3.new(
+					math.random(-getgenv().Brutality['AimAssist'].X, getgenv().Brutality['AimAssist'].X),
+					math.random(-getgenv().Brutality['AimAssist'].Y, getgenv().Brutality['AimAssist'].Y),
+					math.random(-getgenv().Brutality['AimAssist'].Z, getgenv().Brutality['AimAssist'].Z)
+				) * 1)
+			Camera.CFrame = Camera.CFrame:Lerp(Main, getgenv().Brutality['AimAssist'].SmoothValue, Enum.EasingStyle.Sine,
+				Enum.EasingDirection.InOut, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out,
+				Enum.EasingStyle.Exponential, Enum.EasingDirection.Out)
+		else
+			local Main = CFrame.new(Camera.CFrame.p,
+				Plr.Character[getgenv().Brutality['AimAssist'].HitPart].Position +
+				Plr.Character[getgenv().Brutality['AimAssist'].HitPart].Velocity *
+				getgenv().Brutality['AimAssist'].Prediction)
+			Camera.CFrame = Camera.CFrame:Lerp(Main, getgenv().Brutality['AimAssist'].SmoothValue,
+				Enum.EasingStyle[getgenv().Brutality['AimAssist']['EasingStyle'].Style],
+				Enum.EasingDirection[getgenv().Brutality['AimAssist']['EasingStyle'].Direction])
+		end
+	end
+end)
+
+RunService.Heartbeat:Connect(function()
+	if getgenv().Brutality['AimAssist'].Enabled == true and Plr and Plr.Character ~= nil then
+		if getgenv().Brutality["Checks"].Knocked then
+			if Plr.Character.BodyEffects["K.O"].Value then
+				Plr = nil
+			end
+		end
+	end
+end)
+
+RunService.RenderStepped:Connect(function()
+	if getgenv().Brutality['AimAssist'].Smooth and getgenv().Brutality['AimAssist'].Enabled == true then
+		local Main = CFrame.new(workspace.CurrentCamera.CFrame.p,
+			Plr.Character[getgenv().Brutality['AimAssist'].HitPart].Position +
+			Plr.Character[getgenv().Brutality['AimAssist'].HitPart].Velocity *
+			getgenv().Brutality['AimAssist'].Prediction)
+		workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame:Lerp(Main, getgenv().Brutality['AimAssist']
+			.SmoothValue, Enum.EasingStyle[getgenv().Brutality['AimAssist']['EasingStyle'].First],
+			Enum.EasingDirection[getgenv().Brutality['AimAssist']['EasingStyle'].Second])
+	elseif getgenv().Brutality['AimAssist'].Smooth == false and getgenv().Brutality['AimAssist'].Enabled == true then
+		workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position,
+			Plr.Character[getgenv().Brutality['AimAssist'].HitPart].Position +
+			Plr.Character[getgenv().Brutality['AimAssist'].HitPart].Velocity *
+			getgenv().Brutality['AimAssist'].Prediction)
+	end
+end)
+
+
+local custom_theme = {}  --soon
+
+local function CreateInstance(cls, props)
+	local inst = Instance.new(cls)
+	for i, v in pairs(props) do
+		inst[i] = v
+	end
+	return inst
+end
+
+local BrutalityTarget
+local BrutalityTargetrey2
+local On
+
+local Vec2 = function(property)
+	return Vector2.new(property.X, property.Y + (game:GetService("GuiService"):GetGuiInset().Y))
+end
+
+if Brutality['Resolver'].Anti_Aim_Viewer == true then
+	if BrutalityTarget then
+		local a = math.huge
+		local b = nil
+
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if v ~= Client and v.Character and v.Character:FindFirstChild("Head") and v.Character:FindFirstChild("HumanoidRootPart") then
+				local c = game.Workspace.CurrentCamera:WorldToViewportPoint(v.Character.Head.Position)
+				local d = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(c.X, c.Y)).Magnitude
+				if a > d then
+					b = v
+					a = d
+				end
+			end
+		end
+
+		return b
+	elseif BrutalityTarget == nil then
+		wait()
+	end
+end
+
+getgenv().uhpoop = {
+	Enabled = (getgenv().Brutality['GunFov'].Enabled),
+	DoubleBarrel = { ['Fov'] = (getgenv().Brutality['GunFov'].DoubleBarrel) },      --// Db
+	Revolver = { ['Fov'] = (getgenv().Brutality['GunFov'].Revolver) },              --// Rev
+	SMG = { ['Fov'] = (getgenv().Brutality['GunFov'].Smg) },                        --// Uzi/Smg
+	Shotgun = { ['Fov'] = (getgenv().Brutality['GunFov'].Shotgun) },                --// Sg
+	TacticalShotgun = { ['Fov'] = (getgenv().Brutality['GunFov'].TacticalShotgun) }, --// Tac
+	Silencer = { ['Fov'] = (getgenv().Brutality['GunFov'].Silencer) },              -- smg
+	AK47 = { ['Fov'] = (getgenv().Brutality['GunFov'].AK47) },                      -- AK47
+	AR = { ['Fov'] = (getgenv().Brutality['GunFov'].AR) },                          -- AR
+	P90 = { ['Fov'] = (getgenv().Brutality['GunFov'].P90) },                        -- P90
+	AUG = { ['Fov'] = (getgenv().Brutality['GunFov'].AUG) },                        -- AUG
+	SilencerAR = { ['Fov'] = (getgenv().Brutality['GunFov'].SilencerAR) },          -- SilencerAR
+
+}
+
+local Script = { Functions = {} }
+Script.Functions.getToolName = function(name)
+	local split = string.split(string.split(name, "[")[2], "]")[1]
+	return split
+end
+Script.Functions.getEquippedWeaponName = function()
+	if (Client.Character) and Client.Character:FindFirstChildWhichIsA("Tool") then
+		local Tool = Client.Character:FindFirstChildWhichIsA("Tool")
+		if string.find(Tool.Name, "%[") and string.find(Tool.Name, "%]") and not string.find(Tool.Name, "Wallet") and not string.find(Tool.Name, "Phone") then
+			return Script.Functions.getToolName(Tool.Name)
+		end
+	end
+	return nil
+end
+RS.RenderStepped:Connect(function()
+	if Script.Functions.getEquippedWeaponName() ~= nil then
+		local WeaponSettings = getgenv().uhpoop[Script.Functions.getEquippedWeaponName()]
+		if WeaponSettings ~= nil and getgenv().Brutality['GunFov'].Enabled == true then
+			getgenv()
+			Brutality['Fov']['Silent'].Size = WeaponSettings.FOV
+		else
+			getgenv()
+			Brutality['Fov']['Silent'].Size = getgenv().Brutality['Fov']['Silent'].Size
+		end
+	end
+end)
+
+local Aiming = loadstring(game:HttpGet("https://pastebin.com/raw/rCNtm7mM"))()
+Aiming.TeamCheck(false)
+
+
+
+local Workspace = game:GetService("Workspace")
+
+local Players = game:GetService("Players")
+
+local RunService = game:GetService("RunService")
+
+local UserInputService = game:GetService("UserInputService")
+
+
+
+local LocalPlayer = Players.LocalPlayer
+
+local Mouse = LocalPlayer:GetMouse()
+
+local CurrentCamera = Workspace.CurrentCamera
+
+
+Aiming.FOV = 50
+--------------------------------------------------
+--------------------------------------------------- -fov 5.5-6.6 is legit
+
+function Aiming.Check()
+	if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
+		return false
+	end
+end
+
+game:GetService("RunService").Heartbeat:Connect(
+	function()
+		if
+			getgenv().Brutality['Range'].Enabled == true and getgenv().Brutality['Range'].Type == "Fov" and Aiming.Selected ~= nil and (Aiming.Selected.Character) and targ and targ.Character then
+			if
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Close
+			then
+				getgenv().Brutality['Fov']['Silent'].Size = getgenv().Brutality['Range'].CloseFov
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Mid
+			then
+				getgenv().Brutality['Fov']['Silent'].Size = getgenv().Brutality['Range'].MidFov
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Far
+			then
+				getgenv().Brutality['Fov']['Silent'].Size = getgenv().Brutality['Range'].FarFov
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Far
+			then
+				getgenv().Brutality['Fov']['Silent'].Size = getgenv().Brutality['Range'].VeryFarFov
+			end
+		end
+	end
+)
+
+game:GetService("RunService").Heartbeat:Connect(
+	function()
+		if
+			getgenv().Brutality['Range'].Enabled == true and getgenv().Brutality['Range'].Type == "Prediction" and Aiming.Selected ~= nil and (Aiming.Selected.Character) and targ and Plr.Character then
+			if
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Close
+			then
+				getgenv().Brutality['Silent'].Prediction = getgenv().Brutality['Range'].ClosePrediction
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Mid
+			then
+				getgenv().Brutality['Silent'].Prediction = getgenv().Brutality['Range'].MidPrediction
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Far
+			then
+				getgenv().Brutality['Silent'].Prediction = getgenv().Brutality['Range'].FarPrediction
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].VeryFar
+			then
+				getgenv().Brutality['Silent'].Prediction = getgenv().Brutality['Range'].VeryFarPrediction
+			end
+		end
+	end
+)
+
+game:GetService("RunService").Heartbeat:Connect(
+	function()
+		if
+			getgenv().Brutality['Range'].Enabled == true and getgenv().Brutality['Range'].Type == "Both" and Aiming.Selected ~= nil and (Aiming.Selected.Character) and targ and Plr.Character then
+			if
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Close
+			then
+				getgenv().Brutality['Fov']['Silent'].Size = getgenv().Brutality['Range'].CloseFov
+				getgenv().Brutality['Silent'].Prediction = getgenv().Brutality['Range'].ClosePrediction
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Mid
+			then
+				getgenv().Brutality['Fov']['Silent'].Size = getgenv().Brutality['Range'].MidFov
+				getgenv().Brutality['Silent'].Prediction = getgenv().Brutality['Range'].MidPrediction
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].Far
+			then
+				getgenv().Brutality['Fov']['Silent'].Size = getgenv().Brutality['Range'].FarFov
+				getgenv().Brutality['SIlent'].Prediction = getgenv().Brutality['Range'].FarPrediction
+			elseif
+				(game.Players[Aiming.Selected.Name].Character.HumanoidRootPart.Position -
+					game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <
+				getgenv().Brutality['Range'].VeryFar
+			then
+				getgenv().Brutality['Fov']['Silent'].Size = getgenv().Brutality['Range'].VeryFarFov
+				getgenv().Brutality['SIlent'].Prediction = getgenv().Brutality['Range'].VeryFarPrediction
+			end
+		end
+	end
+)
+
+
+RunService.Heartbeat:Connect(manage_range)
+
+local AnimationIds = {
+	Lay = "rbxassetid://3152378852",
+	Greet = "rbxassetid://3189777795",
+	Sturdy = "rbxassetid://11710529975",
+	Griddy = "rbxassetid://11710529975",
+	Speed = "rbxassetid://11710541744",
+}
+
+
+local Script = { Functions = {} }
+Script.Functions.getToolName = function(name)
+	local split = string.split(string.split(name, "[")[2], "]")[1]
+	return split
+end
+Script.Functions.getEquippedWeaponName = function()
+	if (Client.Character) and Client.Character:FindFirstChildWhichIsA("Tool") then
+		local Tool = Client.Character:FindFirstChildWhichIsA("Tool")
+		if string.find(Tool.Name, "%[") and string.find(Tool.Name, "%]") and not string.find(Tool.Name, "Wallet") and not string.find(Tool.Name, "Phone") then
+			return Script.Functions.getToolName(Tool.Name)
+		end
+	end
+	return nil
+end
+RS.RenderStepped:Connect(function()
+	if Script.Functions.getEquippedWeaponName() ~= nil then
+		local WeaponSettings = getgenv().Brutality['GunFov'][Script.Functions.getEquippedWeaponName()]
+		if WeaponSettings ~= nil and getgenv().Brutality['GunFov'].Enabled == true then
+			getgenv().Brutality['Fov']['Silent'].Size = WeaponSettings.FOV
+		else
+			getgenv().Brutality['Fov']['Silent'] = getgenv().Brutality['Fov']['Silent'].Size
+		end
+	end
+end)
+
+
+
+game:GetService("UserInputService").InputBegan:Connect(function(key, gp)
+	if not gp then
+		if key.KeyCode == Brutality.Animation.LayKey then
+			if Brutality.Animation.Lay then
+				local Lay = Instance.new("Animation")
+				Lay.AnimationId = AnimationIds.Lay
+				local LayTrack = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Lay)
+				LayTrack:Play()
+				game.Players.LocalPlayer.Character.Humanoid.Running:Connect(function()
+					LayTrack:Stop()
+				end)
+			end
+		end
+		if key.KeyCode == Brutality.Animation.GreetKey then
+			if Brutality.Animation.Greet then
+				local Greet = Instance.new("Animation")
+				Greet.AnimationId = AnimationIds.Greet
+				local GreetTrack = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Greet)
+				GreetTrack:Play()
+				game.Players.LocalPlayer.Character.Humanoid.Running:Connect(function()
+					GreetTrack:Stop()
+				end)
+			end
+		end
+		if key.KeyCode == Brutality.Animation.SpeedKey then
+			if Brutality.Animation.Speed then
+				local Speed = Instance.new("Animation")
+				Speed.AnimationId = AnimationIds.Speed
+				local SppedTrack = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Speed)
+				SpeedTrack:Play()
+				game.Players.LocalPlayer.Character.Humanoid.Running:Connect(function()
+					SpeedTrack:Stop()
+				end)
+			end
+		end
+		if key.KeyCode == Brutality.Animation.SturdyKey then
+			if Brutality.Animation.Sturdy then
+				local Sturdy = Instance.new("Animation")
+				Sturdy.AnimationId = AnimationIds.Sturdy
+				local SturdyTrack = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Sturdy)
+				SturdyTrack:Play()
+				game.Players.LocalPlayer.Character.Humanoid.Running:Connect(function()
+					SturdyTrack:Stop()
+				end)
+			end
+		end
+		if key.KeyCode == Brutality.Animation.GriddyKey then
+			if Brutality.Animation.Griddy then
+				local Griddy = Instance.new("Animation")
+				Griddy.AnimationId = AnimationIds.Griddy
+				local GriddyTrack = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Griddy)
+				GriddyTrack:Play()
+				game.Players.LocalPlayer.Character.Humanoid.Running:Connect(function()
+					GriddyTrack:Stop()
+				end)
+			end
+		end
+	end
+end)
+
+
+
+
+
+
+if Brutality['Options'].BestConnection then
+	HTTPService = game:GetService("HttpService")
+	local TeleportService = game:GetService("TeleportService")
+	local StatsService = game:GetService("Stats")
+
+	local function fetchServersData(placeId, limit)
+		local url = string.format("https://games.roblox.com/v1/games/%d/servers/Public?limit=%d", placeId, limit)
+		local success, response = pcall(function()
+			return HTTPService:JSONDecode(game:HttpGet(url))
+		end)
+
+		if success and response and response.data then
+			return response.data
+		end
+
+		return nil
+	end
+
+	local placeId = game.PlaceId
+	local serverLimit = 100
+	local servers = fetchServersData(placeId, serverLimit)
+
+	if not servers then
+		return
+	end
+
+	local lowestPingServer = servers[1]
+
+	for _, server in pairs(servers) do
+		if server["ping"] < lowestPingServer["ping"] and server.maxPlayers > server.playing then
+			lowestPingServer = server
+		end
+	end
+
+	local commonLoadTime = 5
+	task.wait(commonLoadTime)
+
+	local pingThreshold = 100
+	local serverStats = StatsService.Network.ServerStatsItem
+	local dataPing = serverStats["Data Ping"]:GetValueString()
+	local pingValue = tonumber(dataPing:match("(%d+)"))
+
+	if pingValue >= pingThreshold then
+		TeleportService:TeleportToPlaceInstance(placeId, lowestPingServer.id)
+	else
+		-- Good ping
+	end
+end
+
+
+if Brutality['Memory'].Enabled then
+	local Settings = {
+		range1 = Brutality['Memory'].Start,
+		range2 = Brutality['Memory'].End,
+
+	}
+
+	for __, v in pairs(game.CoreGui.RobloxGui.PerformanceStats:GetChildren()) do
+		if v.Name == "PS_Button" and v.StatsMiniTextPanelClass.TitleLabel.Text == "Mem" then
+			Memory = v.StatsMiniTextPanelClass.ValueLabel
+		end
+	end
+
+	Memory:GetPropertyChangedSignal("Text"):Connect(function()
+		local Random = math.random(Settings.range1, Settings.range2)
+		Random = Random * 1.23
+		Memory.Text = "" .. Random .. " MB"
+	end)
+end
+
+
+local localplayer = game:GetService "Players".LocalPlayer
+local uis = game:GetService "UserInputService"
+
+local cheats = {
+	b_b = Brutality.Esp.Bounding_Box,
+	b_f = Brutality.Esp.Fill_Box,
+	b_f_t = Brutality.Esp.Fill_Transparency,
+	b_sd = Brutality.Esp.Distance,
+	b_sn = Brutality.Esp.Names,
+	b_sh = Brutality.Esp.Health,
+	b_ht = Brutality.Esp.Health_Type,
+	b_rt = true,
+	b_tc = true,
+}
+
+task.spawn(function() while task.wait() do if getgenv().Brutality['Resolver'].Enabled == true then checkVelocity(
+			prey or prey2, getgenv().Brutality['Resolver'].Min, getgenv().Brutality['Resolver'].Max) end end end)
+
+Mouse.KeyDown:Connect(
+	function(Key)
+		if getgenv().Brutality['Silent'].Enable_KeyBind then
+			if (Key == getgenv().Brutality['Silent'].Keybind:lower()) then
+				if getgenv().Brutality['Silent'].Enabled == true then
+					getgenv().Brutality['SIlent'].Enabled = false
+					StarterGui:SetCore("SendNotification", {
+						Title = "Brutality.cc",
+						Text = "Silent Disabled"
+					})
+				else
+					getgenv().Brutality['Silent'].Enabled = true
+					StarterGui:SetCore("SendNotification", {
+						Title = "Brutality.cc",
+						Text = "Silent Enabled"
+					})
+				end
+			end
+		end
+	end
+)
+
+task.spawn(function()
+	if getgenv().Brutality["ChecksV1"].NoGroundShots and Plr2.Character[getgenv().Brutality['Silent'].HitParts].Velocity.Y < -15 then
+		pcall(function()
+			local Target = Plr2.Character[getgenv().Brutality['Silent'].HitParts]
+			Target.Velocity = Vector3.new(Target.Velocity.X, (Target.Velocity.Y / 5), Target.Velocity.Z)
+			Target.AssemblyLinearVelocity = Vector3.new(Target.Velocity.X, (Target.Velocity.Y / 5), Target.Velocity.Z)
+		end)
+	end
+end)
+
+RunService.RenderStepped:Connect(function()
+	if getgenv().Brutality['TriggerBot'].Enabled then
+		if Mouse.Target then
+			if Mouse.Target.Parent:FindFirstChild('Humanoid') and Mouse.Target.Parent:FindFirstChild('Head') and Mouse.Target.Parent:FindFirstChild('LowerTorso') and Mouse.Target.Parent:FindFirstChild('UpperTorso') then
+				if getgenv().Brutality['TriggerBot'].EnableDelay then
+					wait(getgenv().Brutality['TriggerBot'].Delay)
+					mouse1click()
+					mouse1release()
+				else
+					mouse1click()
+					mouse1release()
+				end
+			end
+		end
+	end
+end)
+
+Mouse.KeyDown:Connect(
+	function(Key)
+		if getgenv().Brutality['TriggerBot'].Use_KeyBind then
+			if (Key == getgenv().Brutality['TriggerBot'].KeyBind:lower()) then
+				if getgenv().Brutality['TriggerBot'].Enabled == true then
+					getgenv().Brutality['TriggerBot'].Enabled = false
+					StarterGui:SetCore("SendNotification", {
+						Title = "Brutality.cc",
+						Text = "TriggerBot Disabled"
+					})
+				else
+					getgenv().Brutality['TriggerBot'].Enabled = true
+					StarterGui:SetCore("SendNotification", {
+						Title = "Brutality.cc",
+						Text = "TriggerBot Enabled"
+					})
+				end
+			end
+		end
+	end
+)
+
+task.spawn(function()
+	if getgenv().Brutality['ChecksV1'].NoGroundShots and Plr2.Character[getgenv().Brutality['Silent'].HitParts].Velocity.Y < -15 then
+		pcall(function()
+			local Target = Plr2.Character[getgenv().Brutality['Silent'].HitParts]
+			Target.Velocity = Vector3.new(Target.Velocity.X, (Target.Velocity.Y / 5), Target.Velocity.Z)
+			Target.AssemblyLinearVelocity = Vector3.new(Target.Velocity.X, (Target.Velocity.Y / 5), Target.Velocity.Z)
+		end)
+	end
+end)
+
+if Brutality['Silent'].Use_HitChance and Brutality['Silent'].Enabled and target then
+	local function CalculateHitchance()
+		local targetPosition = game.Workspace:FindFirstChild(Brutality['Silent'].HitParts).Position
+		local aimingPosition = Vector3.new(0, 0, 0)
+		local distance = (targetPosition - aimingPosition).Magnitude
+		local maxDistance = 10
+		local baseHitchance = 9999999 - (distance / maxDistance) * 10
+		baseHitchance = math.clamp(baseHitchance, 0, 9999999)
+		local hitchance = baseHitchance * (Brutality['Silent'].HitChance / 9999999)
+		return hitchance
+	end
+
+	local hitchance = CalculateHitchance()
+end
+
+-- // Chat -- //
+local me = game:GetService("Players").LocalPlayer
+
+me.Chatted:Connect(function(message)
+	if getgenv().Brutality['Chat'].Enabled then
+		local args = string.split(message, " ")
+		if args[1] == getgenv().Brutality['Chat'].Fov_Size and args[2] ~= nil then
+			getgenv().Brutality['Fov']['Silent'].Radius = tonumber(args[2])
+		end
+	end
+	if getgenv().Brutality['Chat'].Enabled then
+		local args = string.split(message, " ")
+		if args[1] == getgenv().Brutality['Chat'].Silent_Prediction and args[2] ~= nil then
+			getgenv().Brutality['Silent'].Prediction = tonumber(args[2])
+		end
+	end
+	if getgenv().Brutality['Chat'].Enabled then
+		local args = string.split(message, " ")
+		if args[1] == getgenv().Brutality['Chat'].HitChance and args[2] ~= nil then
+			getgenv().Brutality['Silent'].HitChance = tonumber(args[2])
+		end
+	end
+	if getgenv().Brutality['Chat'].Enabled then
+		local args = string.split(message, " ")
+		if args[1] == getgenv().Brutality['Chat'].Show_Fov_Silent and args[2] ~= nil then
+			getgenv().Brutality['Fov']['Silent'].Visible = tonumber(args[2])
+		end
+	end
+end)
+
+-- // Auto Prediction -- //
+
+while Brutality.AutoPredictioniction.Enabled == true do
+	local ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+	local pingValue = string.split(ping, " ")[1]
+	local pingNumber = tonumber(pingValue)
+	if pingNumber < 10 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P10
+	elseif pingNumber < 20 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P20
+	elseif pingNumber < 30 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P30
+	elseif pingNumber < 40 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P40
+	elseif pingNumber < 50 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P50
+	elseif pingNumber < 60 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P60
+	elseif pingNumber < 70 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P70
+	elseif pingNumber < 80 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P80
+	elseif pingNumber < 90 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P90
+	elseif pingNumber < 100 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P100
+	elseif pingNumber < 110 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P110
+	elseif pingNumber < 120 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P120
+	elseif pingNumber < 130 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P130
+	elseif pingNumber < 140 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P140
+	elseif pingNumber < 150 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P150
+	elseif pingNumber < 160 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P160
+	elseif pingNumber < 170 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P170
+	elseif pingNumber < 180 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P180
+	elseif pingNumber < 190 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P190
+	elseif pingNumber < 200 then
+		getgenv().Brutality['Silent'].Prediction = Brutality.AutoPrediction.P200
+	end
+end
+
+if getgenv().Brutality['Silent'].HitPart_Mode == 'Nearest Part' then
+	getgenv().Brutality['Silent'].HitParts =
+		tostring(getClosestPartToCursor(SilentTarget.Character, getgenv().Brutality['Silent']))
+	Aimplace = (SilentTarget.Character[getgenv().Brutality['Silent'].HitParts].Position) +
+		(SilentVelocity * getgenv().Brutality['Silent'].Prediction)
+elseif getgenv().Brutality['Silent'].HitParts == 'Default' then
+	getgenv().Brutality['Silent'].HitParts = getgenv().Brutality['Silent'].HitParts
+	Aimplace = (SilentTarget.Character[getgenv().Brutality['Silent'].HitParts].Position) +
+		(SilentVelocity * getgenv().Brutality['Silent'].Prediction)
+elseif getgenv().Brutality['Silent'].HitPart_Mode == "Nearest Point" then
+	getgenv().Brutality['Silent'].HitParts =
+		tostring(getClosestPartToCursor(SilentTarget.Character, getgenv().Brutality['Silent']))
+	Aimplace = (getClosestPointOnPart(
+			SilentTarget.Character[getgenv().Brutality['Silent'].HitParts]) +
+		(SilentVelocity * getgenv().Brutality['Silent'].Prediction))
+end
+
+-- // NoClip Macro -- //
+
+if getgenv().Brutality['Noclip_Macro'].Enabled == true then
+	local Keybind = getgenv().Brutality['Noclip_Macro'].KeyBind
+	while true do
+		local function OnKeyPress(Input)
+			if Input.KeyCode == Enum.KeyCode[Keybind:upper()] then
+				for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.Name == getgenv().Brutality['Noclip_Macro'].Gun then
+						game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+						task.wait(getgenv().Brutality['Noclip_Macro'].Interval)
+						game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+					end
+				end
+			end
+		end
+		task.wait(getgenv().Brutality['Noclip_Macro'].Interval)
+	end
+end
+
+-- // Credits to farzad -- //
+if (getgenv().Brutality['UnlockFps'].Enabled) == true then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/xfarzad/Sources/main/UWP%20fps%20boost.lua", true))()
+end
+
+if (getgenv().Brutality['OptimizeUWP'].EnableOptimizeUwp) == true then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/xfarzad/Sources/main/UWP%20Optimizer"))()
+end
